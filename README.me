@@ -1,0 +1,25 @@
+# 🚀 TaskFlow - Task Management System
+
+TaskFlow es una aplicación de gestión de tareas desarrollada con **JavaScript Moderno (ES6+)**. El proyecto aplica principios avanzados de programación orientada a objetos (POO) y programación funcional, enfocándose en la **inmutabilidad** de los datos y la **consistencia de estado**.
+
+Este proyecto forma parte de mi formación en el curso de **Full Stack JavaScript** (SENCE/Alkemy).
+
+## 🛠️ Características Técnicas
+
+- **Arquitectura Modular**: Separación clara de responsabilidades entre la lógica de negocio (`Task`), la gestión de colecciones (`TaskManager`) y la manipulación del DOM.
+- **Inmutabilidad**: Uso de métodos de ES6 como `.map()` y el **Operador Spread** (`...`) para actualizar el estado sin mutar los datos originales.
+- **Validación de Estados**: Implementación de un "Enum" simulado con `Object.freeze` para garantizar que las tareas solo transicionen por estados legales.
+- **Trazabilidad**: Registro automático de marcas de tiempo (`createdAt` y `completedAt`) mediante métodos internos de la clase.
+
+## 📂 Estructura del Proyecto
+
+* `Task.js`: Definición de la entidad Tarea y sus reglas de negocio.
+* `TaskManager.js`: Lógica de administración del arreglo de tareas (CRUD inmutable).
+* `main.js`: Punto de entrada de la aplicación y script de pruebas para validación en consola.
+* `index.html`: Estructura base utilizando **Bootstrap** para un diseño de 3 columnas (Kanban).
+
+## 🚀 Cómo empezar
+
+1. Clona este repositorio:
+   ```bash
+   git clone [https://github.com/fraancgz/taskflow.git](https://github.com/fraancgz/taskflow.git)
