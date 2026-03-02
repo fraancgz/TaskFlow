@@ -1,23 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor de Tareas</title>
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <link rel="stylesheet" href="./css/style.css">
 </head>
-<body>
-    <div class="container">
 
-    </div>
+<body>
+    <div class="vh-100 d-flex flex-column bg-light">
+    <header class="bg-white border-bottom py-3 shadow-sm">
+        <h1 class="h4 m-0 text-center fw-bold text-primary">Task Flow</h1>
+    </header>
+
+    <main class="flex-grow-1 overflow-hidden p-2">
+        <div class="container-fluid h-100">
+            <div class="row h-100 g-3">
+                
+                <div class="col-12 col-md-4 h-custom-mobile">
+                    <div class="column-wrapper border bg-white shadow-sm">
+                        <div class="p-3 border-bottom d-flex justify-content-between align-items-center bg-white sticky-top">
+                            <h2 class="h6 m-0 fw-bold text-secondary">CREADAS</h2>
+                            <button id="btnAddTask" class="btn btn-primary btn-sm rounded-circle fw-bold" style="width:30px; height:30px;">+</button>
+                        </div>
+                        <div id="createdPool" class="task-pool"></div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 h-custom-mobile">
+                    <div class="column-wrapper border bg-white shadow-sm">
+                        <div class="p-3 border-bottom bg-white sticky-top">
+                            <h2 class="h6 m-0 fw-bold text-secondary">EN PROCESO</h2>
+                        </div>
+                        <div id="inProcesPool" class="task-pool"></div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4 h-custom-mobile">
+                    <div class="column-wrapper border bg-white shadow-sm">
+                        <div class="p-3 border-bottom bg-white sticky-top">
+                            <h2 class="h6 m-0 fw-bold text-secondary">FINALIZADAS</h2>
+                        </div>
+                        <div id="finishedPool" class="task-pool"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</div>
 
     <!-- Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
 
-    <script src="./js/main.js"></script>
+    <script src="./js/main.js" type="module"></script>
 </body>
+
 </html>

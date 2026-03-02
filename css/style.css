@@ -1,0 +1,39 @@
+/* Bloqueo total de scroll en el body */
+html, body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* El truco del scroll interno */
+.column-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.task-pool {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 0; /* Obligatorio para que Flexbox no estire el div */
+    padding: 15px;
+    background-color: #f8f9fa;
+}
+
+/* Ajuste para móvil: que cada fila ocupe un tercio del alto disponible */
+@media (max-width: 767px) {
+    .h-custom-mobile {
+        height: 33.33% !important;
+    }
+}
+
+/* Scrollbar estética */
+.task-pool::-webkit-scrollbar {
+    width: 5px;
+}
+.task-pool::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 10px;
+}
