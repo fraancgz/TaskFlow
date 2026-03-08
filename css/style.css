@@ -1,25 +1,30 @@
 /* Bloqueo total de scroll en el body */
-html, body {
+html,
+body {
     height: 100vh;
     overflow: hidden;
 }
 
-/* El truco del scroll interno */
+/* Asegura que el contenedor de las columnas no se pase del alto de la pantalla */
 .column-wrapper {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100%; 
+    max-height: calc(100vh - 120px); /* Ajuste dinámico: alto total menos header y paddings */
     border-radius: 8px;
     overflow: hidden;
 }
 
 .task-pool {
     flex-grow: 1;
-    overflow-y: auto;
+    overflow-y: auto; /* 'auto' mostrará la barra solo cuando sea necesario */
     overflow-x: hidden;
-    min-height: 0; /* Obligatorio para que Flexbox no estire el div */
+    min-height: 0; 
     padding: 15px;
     background-color: #f8f9fa;
+    
+    /* OPCIONAL: Fuerza que el scrollbar siempre reserve espacio para evitar saltos */
+    scrollbar-gutter: stable; 
 }
 
 /* Ajuste para móvil: que cada fila ocupe un tercio del alto disponible */
@@ -33,7 +38,79 @@ html, body {
 .task-pool::-webkit-scrollbar {
     width: 5px;
 }
+
 .task-pool::-webkit-scrollbar-thumb {
     background: #cbd5e0;
     border-radius: 10px;
+}
+
+/* Bloquea el redimensionamiento de forma global o específica */
+.no-resize {
+    resize: none;
+}
+
+/* Solo aplica estilos si el formulario tiene la clase 'was-validated' */
+.was-validated .form-control:invalid {
+    border-color: #dc3545;
+    /* Rojo de Bootstrap */
+    padding-left: 40px;
+    /* Espacio para el icono a la izquierda */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: left 12px center;
+    background-size: 20px;
+}
+
+/* Borde verde si es válido al enviar */
+.was-validated .form-control:valid {
+    border-color: #198754;
+}
+
+
+/* ---------------------------------------------- Hover Card ----------------------------------------------------------------*/
+/* Este código solo se ejecutará en computadoras con mouse */
+@media (hover: hover) {
+
+    /* Estilo inicial de la descripción: Invisible y sin altura */
+    .task-description {
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.2s ease-in-out;
+        /* Animación suave */
+        margin: 0;
+        color: #6c757d;
+        /* Color gris suave */
+    }
+
+    /* Cuando el mouse entra en la tarjeta (.task-card:hover) */
+    .task-card:hover .task-description {
+        opacity: 1;
+        max-height: 100px;
+        /* O el tamaño que prefieras */
+        margin-top: 10px;
+    }
+
+    /* Opcional: Un ligero levantamiento de la tarjeta */
+    .task-card {
+        transition: transform 0.2s;
+        cursor: pointer;
+    }
+
+    .task-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Este código se ejecutará en celulares o tablets (pantallas táctiles) */
+@media (hover: none) {
+    .task-description {
+        opacity: 1;
+        max-height: none;
+        /* Siempre visible para que el usuario no se pierda info */
+        border-top: 1px solid #eee;
+        padding-top: 8px;
+        margin-top: 8px;
+    }
 }

@@ -1,40 +1,28 @@
 import { TaskManager } from './TaskManager.js'
 import { TaskStatus } from './Task.js'
+import TaskModal from './TaskModal.js'
+import TaskRenderer from './TaskRenderer.js'
+
+
 
 const taskMan = new TaskManager()
-
 const btnAddTask = document.getElementById("btnAddTask")
-const createdPool = document.getElementById("createdPool")
+
+
+const onSave = (formData) => {
+    const newTask = taskMan.addTask(formData.taskTitle, formData.taskDesc);
+    // 2. Renderiza una Card de tarea en el contenedor de tareas creadas. Invoca el método estático 'createCard' 
+    // para generar el HTML y lo inserta en el DOM mediante 'renderTo' usando el ID del contenedor
+    TaskRenderer.renderTo("createdPool", TaskRenderer.createCard(newTask, false));
+}
+
+const taskModal = new TaskModal(onSave)
 
 btnAddTask.addEventListener("click", () => {
-    const tarea = taskMan.addTask("Hacer cama", "Hacer la cama una vez tome desayuno y me bañe")
+    // Instanciamos el modal pasandole la lógica de guardado
+    taskModal.show()
 
-    createdPool.insertAdjacentHTML('beforeend',createCard(tarea, false))
 })
-
-
-const createCard = (task, isMini = false) => {
-    const paddingClass = isMini ? 'p-2' : 'p-3';
-    const fontSizeClass = isMini ? 'small' : 'fs-6';
-
-    return `
-    <div class="card shadow-sm w-100 mb-3 ${paddingClass}" data-id="${task.id}">
-        <div class="card-body p-0 d-flex align-items-center justify-content-between">
-            
-            <div class="flex-grow-1">
-                <h5 class="card-title ${fontSizeClass} fw-bold m-0 text-truncate">
-                    ${task.title}
-                </h5>
-                ${!isMini ? `<p class="card-text small text-muted m-0">${task.description}</p>` : ""}
-            </div>
-
-            <button class="btn btn-outline-danger btn-lg border-0 btn-delete ms-2">
-                &times;
-            </button>
-        </div>
-    </div>
-    `;
-}
 
 
 // Función para mover o eliminar tareas
